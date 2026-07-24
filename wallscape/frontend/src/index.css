@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Space+Grotesk:wght@500;700&family=Caveat:wght@600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --color-void: #15141a;
+  --color-surface: #1f1e26;
+  --color-surface-raised: #26242e;
+  --color-paper-mist: #edeae3;
+  --color-ink-soft: #9c99a8;
+  --color-hairline: #35333d;
+
+  /* Mood-reactive accent — set dynamically via inline style on the root wrapper */
+  --mood-accent: #d9a441;
+  --mood-accent-soft: rgba(217, 164, 65, 0.14);
+}
+
+@theme inline {
+  --color-void: var(--color-void);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-paper-mist: var(--color-paper-mist);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-hairline: var(--color-hairline);
+  --color-mood: var(--mood-accent);
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-paper-mist);
+  font-family: "Inter", sans-serif;
+}
+
+/* Quote overlay display faces per style preset */
+.preset-font-elegant { font-family: "Playfair Display", serif; font-style: italic; }
+.preset-font-modern { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+.preset-font-minimal { font-family: "Inter", sans-serif; font-weight: 500; }
+.preset-font-handwritten { font-family: "Caveat", cursive; font-weight: 700; }
+
+/* Film-strip sprocket holes for the history contact sheet */
+.film-strip {
+  background-image: radial-gradient(circle, var(--color-hairline) 2px, transparent 2.5px);
+  background-size: 14px 14px;
+  background-position: 0 center;
+}
+
+::selection {
+  background: var(--mood-accent);
+  color: var(--color-void);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
