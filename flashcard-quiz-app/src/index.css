@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #FAF6EC;
+  --color-paper-dark: #F1EADA;
+  --color-ink: #2B2A28;
+  --color-ink-soft: #6B6559;
+  --color-rule: #C9C2AE;
+  --color-coral: #C1553A;
+  --color-coral-dark: #A8452E;
+  --color-teal: #3F6E64;
+  --color-teal-dark: #2F544C;
+  --color-mustard: #C99A2E;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(43,42,40,0.05) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Card flip mechanics */
+.flip-scene {
+  perspective: 1800px;
+}
+.flip-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.flip-card.is-flipped {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-face-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card {
+    transition: none;
+  }
+}
+
+/* Torn/ruled top edge for index cards */
+.ruled-card {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    rgba(63, 110, 100, 0.14) 32px
+  );
+  background-position: 0 3.2rem;
+}
+
+.tab-notch {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border-radius: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+}
